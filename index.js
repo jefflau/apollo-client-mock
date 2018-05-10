@@ -1,8 +1,8 @@
-import { ApolloClient } from 'apollo-client'
-import { InMemoryCache } from 'apollo-cache-inmemory'
-import { SchemaLink } from 'apollo-link-schema'
-import { makeExecutableSchema, addMockFunctionsToSchema } from 'graphql-tools'
-import merge from 'lodash/merge'
+const { ApolloClient } = require('apollo-client')
+const { InMemoryCache } = require('apollo-cache-inmemory')
+const { SchemaLink } = require('apollo-link-schema')
+const { makeExecutableSchema, addMockFunctionsToSchema } = require('graphql-tools')
+import merge from require('lodash/merge')
 
 function setupClient(mockResolvers, typeDefs) {
   return function createClient(overwriteMocks = {}) {
