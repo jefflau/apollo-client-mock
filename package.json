@@ -1,6 +1,6 @@
 {
   "name": "apollo-client-mock",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Easily mock the Apollo client for your integration tests",
   "main": "index.js",
   "scripts": {
