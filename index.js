@@ -28,4 +28,4 @@ function setupClient(mockResolvers, typeDefs) {
   }
 }
 
-export default setupClient
+module.exports = setupClient
