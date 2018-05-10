@@ -1,0 +1,24 @@
+{
+  "name": "apollo-client-mock",
+  "version": "0.0.1",
+  "description": "Easily mock the Apollo client for your integration tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "jeff-lau@live.com",
+  "license": "ISC",
+  "prettier": {
+    "semi": false,
+    "editor.formatOnSave": true,
+    "singleQuote": true
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.2.1",
+    "apollo-client": "^2.3.1",
+    "apollo-link": "^1.2.2",
+    "graphql": "^0.13.2",
+    "graphql-tools": "^3.0.1",
+    "lodash": "^4.17.10"
+  }
+}
