@@ -2,6 +2,12 @@
 
 Easily mock your apollo client for testing. It uses Apollo Link Schema under the surface
 
+## Installation
+
+```bash
+$ npm install --save-dev apollo-client-mock
+```
+
 ## Setup
 
 To setup Apollo mock client you need to import your schema in as well as your mock resolvers. Then you can setup your client with these two arguments which will then return a `createClient` function which you can create a mockedClient for each test. `createClient` can optionally take a new set of resolvers that can overwrite your defaults
