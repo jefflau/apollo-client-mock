@@ -63,7 +63,7 @@ test('should call resolver without blowing up', () => {
 }
 ```
 
-The following example shows you can overwrite each resolver per test
+The following example shows you can overwrite each resolver per test. This is useful if you want to setup a spy for your resolver function to ensure it has been called. This is particularly useful if your component just makes a mutation but does not actually show the result of the state change in the component.
 
 ```js
 test('should call resolver without blowing up', () => {
@@ -88,5 +88,3 @@ test('should call resolver without blowing up', () => {
   expect(getDomainState).toHaveBeenCalledTimes(1)
 })
 ```
-
-This is useful if you want to setup a spy for your resolve function and you want to ensure it has been called
