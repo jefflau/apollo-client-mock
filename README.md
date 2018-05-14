@@ -67,24 +67,26 @@ The following example shows you can overwrite each resolver per test
 
 ```js
 test('should call resolver without blowing up', () => {
-
-  const overwriteResolvers = {
+  const getDomainState = jest.fn()
+  const resolverOverwrites = {
     Mutation: () => ({
-      getDomainState: (_, { name }, context) => {
-        return {
-          name,
-          state: 'Closed'
-        }
-      }
+      getDomainState
     })
   }
-
-  render(
-    <ApolloProvider client={createClient(overwriteResolvers)}>
+  const { getByText, container } = renderIntoDocument(
+    <ApolloProvider client={createClient(resolverOverwrites)}>
       <CheckAvailabilityContainer />
     </ApolloProvider>
   )
 
-  //the rest of your test
-}
+  const submitButton = getByText('Check Availability')
+  const form = container.querySelector('form')
+  const input = form.querySelector('input')
+  input.value = 'vitalik.eth'
+  Simulate.change(input)
+  submitButton.click()
+  expect(getDomainState).toHaveBeenCalledTimes(1)
+})
 ```
+
+This is useful if you want to setup a spy for your resolve function and you want to ensure it has been called
