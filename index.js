@@ -9,7 +9,7 @@ const merge = require('lodash/merge')
 
 function setupClient(mockResolvers, typeDefs) {
   return function createClient(overwriteMocks = {}) {
-    const mergedMocks = merge(mockResolvers, overwriteMocks)
+    const mergedMocks = merge({...mockResolvers}, overwriteMocks)
 
     const schema = makeExecutableSchema({ typeDefs })
     addMockFunctionsToSchema({
