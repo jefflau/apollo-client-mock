@@ -1,6 +1,6 @@
 {
   "name": "apollo-client-mock",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Easily mock the Apollo client for your integration tests",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,13 @@
   },
   "author": "Jeff Lau <jeff-lau@live.com> (http://jefflau.net/)",
   "license": "MIT",
-  "keywords": ["jest", "mock", "apollo", "apollo-client", "apollo provider"],
+  "keywords": [
+    "jest",
+    "mock",
+    "apollo",
+    "apollo-client",
+    "apollo provider"
+  ],
   "prettier": {
     "semi": false,
     "editor.formatOnSave": true,
