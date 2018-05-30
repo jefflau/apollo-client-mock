@@ -4,7 +4,7 @@
   "description": "Easily mock the Apollo client for your integration tests",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cd tests && yarn && yarn test"
   },
   "repository": {
     "type": "git",
@@ -12,13 +12,7 @@
   },
   "author": "Jeff Lau <jeff-lau@live.com> (http://jefflau.net/)",
   "license": "MIT",
-  "keywords": [
-    "jest",
-    "mock",
-    "apollo",
-    "apollo-client",
-    "apollo provider"
-  ],
+  "keywords": ["jest", "mock", "apollo", "apollo-client", "apollo provider"],
   "prettier": {
     "semi": false,
     "editor.formatOnSave": true,
@@ -28,6 +22,7 @@
     "apollo-cache-inmemory": "^1.2.1",
     "apollo-client": "^2.3.1",
     "apollo-link": "^1.2.2",
+    "apollo-link-schema": "^1.1.0",
     "graphql": "^0.13.2",
     "graphql-tools": "^3.0.1",
     "lodash": "^4.17.10"
