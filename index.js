@@ -7,17 +7,21 @@ const {
 } = require('graphql-tools')
 const merge = require('lodash/merge')
 
-function setupClient(mockResolvers, typeDefs) {
+function setupClient({ defaultMockResolvers = {}, makeExecutableSchemaOptions, inMemoryCacheOptions }) {
   return function createClient(overwriteMocks = {}) {
-    const mergedMocks = merge({...mockResolvers}, overwriteMocks)
 
-    const schema = makeExecutableSchema({ typeDefs })
+    const mergedMocks = merge({ ...defaultMockResolvers }, overwriteMocks)
+
+    const schema = makeExecutableSchema(makeExecutableSchemaOptions)
+
     addMockFunctionsToSchema({
       schema,
       mocks: mergedMocks
     })
 
-    const apolloCache = new InMemoryCache(window.__APOLLO_STATE__)
+    const apolloCache = new InMemoryCache(inMemoryCacheOptions).restore(
+      window.__APOLLO_STATE__
+    )
 
     const graphqlClient = new ApolloClient({
       cache: apolloCache,
