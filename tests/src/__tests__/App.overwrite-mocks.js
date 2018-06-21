@@ -26,7 +26,7 @@ const createClient = setupClient({
 
 afterEach(cleanup)
 
-test('default mocks should be preserved when after passing in overwrites', async () => {
+test('default mocks should be preserved after passing in overwrites', async () => {
   // See https://github.com/jefflau/apollo-client-mock/pull/1
 
   const overwriteMocks = {

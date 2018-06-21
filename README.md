@@ -32,7 +32,11 @@ const defaultMocks = {
   })
 }
 
-const createClient = setupClient(defaultMocks, typeDefs)
+const makeExecutableSchemaOptions = {
+  typeDefs
+}
+
+const createClient = setupClient({ defaultMocks, makeExecutableSchemaOptions })
 
 export default createClient
 ```
