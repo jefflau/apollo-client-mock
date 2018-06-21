@@ -1,10 +1,6 @@
 import React from 'react'
 import setupClient from '../../../index'
-import {
-  render,
-  cleanup,
-  wait
-} from 'react-testing-library'
+import { render, cleanup, wait } from 'react-testing-library'
 import { ApolloProvider } from 'react-apollo'
 
 import App from '../App'
@@ -30,8 +26,20 @@ const createClient = setupClient({
 
 afterEach(cleanup)
 
-test('1: should display "Default Message"', async () => {
-  const { getByText } = render(
+test('default mocks should be preserved when after passing in overwrites', async () => {
+  // See https://github.com/jefflau/apollo-client-mock/pull/1
+
+  const overwriteMocks = {
+    Query: () => ({
+      hello: () => 'Overwritten Message'
+    })
+  }
+
+  /**
+   * Note that overwriteMocks are not being used here,
+   * they are only used on the first rerender
+   */
+  const { getByText, rerender } = render(
     <ApolloProvider client={createClient()}>
       <App />
     </ApolloProvider>
@@ -39,17 +47,9 @@ test('1: should display "Default Message"', async () => {
 
   await wait()
 
-  expect(getByText(/Default/i)).toBeTruthy()
-})
+  expect(getByText(/Default Message/i)).toBeTruthy()
 
-test('2: should display "Overwritten Message"', async () => {
-  const overwriteMocks = {
-    Query: () => ({
-      hello: () => 'Overwritten Message'
-    })
-  }
-
-  const { getByText } = render(
+  rerender(
     <ApolloProvider client={createClient(overwriteMocks)}>
       <App />
     </ApolloProvider>
@@ -57,11 +57,9 @@ test('2: should display "Overwritten Message"', async () => {
 
   await wait()
 
-  expect(getByText(/Overwritten/i)).toBeTruthy()
-})
+  expect(getByText(/Overwritten Message/i)).toBeTruthy()
 
-test('3: should display "Default Message" again', async () => {
-  const { getByText } = render(
+  rerender(
     <ApolloProvider client={createClient()}>
       <App />
     </ApolloProvider>
@@ -69,5 +67,5 @@ test('3: should display "Default Message" again', async () => {
 
   await wait()
 
-  expect(getByText(/Default/i)).toBeTruthy()
+  expect(getByText(/Default Message/i)).toBeTruthy()
 })
