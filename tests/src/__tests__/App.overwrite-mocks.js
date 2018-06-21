@@ -43,14 +43,14 @@ test('1: should display "Default Message"', async () => {
 })
 
 test('2: should display "Overwritten Message"', async () => {
-  const resolverOverwrites = {
+  const overwriteMocks = {
     Query: () => ({
       hello: () => 'Overwritten Message'
     })
   }
 
-  const { getByText, debug } = render(
-    <ApolloProvider client={createClient(resolverOverwrites)}>
+  const { getByText } = render(
+    <ApolloProvider client={createClient(overwriteMocks)}>
       <App />
     </ApolloProvider>
   )
