@@ -87,8 +87,8 @@ test('should call resolver without blowing up', () => {
   const form = container.querySelector('form')
   const input = form.querySelector('input')
   input.value = 'vitalik.eth'
-  Simulate.change(input)
-  submitButton.click()
+  fireEvent.change(input)
+  fireEvent.click(submitButton)
   expect(getDomainState).toHaveBeenCalledTimes(1)
 })
 ```
