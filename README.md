@@ -95,7 +95,7 @@ test('should call resolver without blowing up', () => {
 
 ## <a name="setupClientApi">setupClient API</a>
 
-setupClinet takes an object with the following options
+setupClient takes an object with the following options
 
 - `defaultMocks` is an object that would mirror the resolvers of queries, mutations, and other types that need to be mocked in your tests. See here for more information https://www.apollographql.com/docs/graphql-tools/mocking.html#Customizing-mocks.
 
@@ -103,7 +103,7 @@ setupClinet takes an object with the following options
 
 - `inMemoryCacheOptions` is a completely optional object. It is passed to InMemoryCache inside of setupClient. Normally, you will not need to pass this option at all. For a full list of available options see https://www.apollographql.com/docs/react/advanced/caching.html#configuration.
 
-Here is an example of passing a fragmentMatcher to the mocked ApolloClient. You will see the differences and similarities between setting it up for your mocked ApolloClient and the actuall ApolloClinet for your application. https://www.apollographql.com/docs/react/advanced/fragments.html#fragment-matcher
+Here is an example of passing a fragmentMatcher to the mocked ApolloClient. You will see the differences and similarities between setting it up for your mocked ApolloClient and the actual ApolloClient for your application. https://www.apollographql.com/docs/react/advanced/fragments.html#fragment-matcher
 
 ```js
 import setupClient from 'apollo-mock-client'
@@ -126,7 +126,7 @@ const makeExecutableSchemaOptions = {
   resolverValidationOptions: {
     /**
      * Disables warning in the console about using
-     * Interface / Union types without havig a resolveType resolver
+     * Interface / Union types without having a resolveType resolver
      */
     requireResolversForResolveType: false
   }
