@@ -11,14 +11,14 @@ const typeDefs = `
   }
 `
 
-const defaultMockResolvers = {
+const defaultMocks = {
   Query: () => ({
     hello: () => 'Default Message'
   })
 }
 
 const createClient = setupClient({
-  defaultMockResolvers,
+  defaultMocks,
   makeExecutableSchemaOptions: {
     typeDefs
   }

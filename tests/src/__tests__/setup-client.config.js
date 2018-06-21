@@ -1,6 +1,6 @@
 import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory'
 
-test('ensure defaultMockResolvers, overwriteMocks, makeExecutableSchemaOptions, and inMemoryCacheOptions are being passed into their appropriate places.', () => {
+test('ensure defaultMocks, overwriteMocks, makeExecutableSchemaOptions, and inMemoryCacheOptions are being passed into their appropriate places.', () => {
   const mockMakeExecutableSchema = jest.fn()
   const mockAddMockFunctionsToSchema = jest.fn()
   const mockInMemoryCache = jest.fn(() => ({
@@ -98,14 +98,14 @@ test('ensure defaultMockResolvers, overwriteMocks, makeExecutableSchemaOptions, 
     }
   }
 
-  const defaultMockResolvers = {
+  const defaultMocks = {
     Query: {
       hello: () => 'Hello Saturn'
     }
   }
 
   const createClient = setupClient({
-    defaultMockResolvers,
+    defaultMocks,
     makeExecutableSchemaOptions,
     inMemoryCacheOptions
   })
@@ -126,7 +126,7 @@ test('ensure defaultMockResolvers, overwriteMocks, makeExecutableSchemaOptions, 
   )
   expect(mockAddMockFunctionsToSchema).toHaveBeenCalledWith(
     expect.objectContaining({
-      mocks: { ...defaultMockResolvers, ...overwriteMocks }
+      mocks: { ...defaultMocks, ...overwriteMocks }
     })
   )
   expect(mockInMemoryCache).toHaveBeenCalledWith(inMemoryCacheOptions)

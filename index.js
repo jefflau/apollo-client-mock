@@ -7,10 +7,10 @@ const {
 } = require('graphql-tools')
 const merge = require('lodash/merge')
 
-function setupClient({ defaultMockResolvers = {}, makeExecutableSchemaOptions, inMemoryCacheOptions }) {
+function setupClient({ defaultMocks = {}, makeExecutableSchemaOptions, inMemoryCacheOptions }) {
   return function createClient(overwriteMocks = {}) {
 
-    const mergedMocks = merge({ ...defaultMockResolvers }, overwriteMocks)
+    const mergedMocks = merge({ ...defaultMocks }, overwriteMocks)
 
     const schema = makeExecutableSchema(makeExecutableSchemaOptions)
 
