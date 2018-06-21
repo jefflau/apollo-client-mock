@@ -1,5 +1,5 @@
 import React from 'react'
-import setupClient from '../../index'
+import setupClient from '../../../index'
 import {
   render,
   cleanup,
@@ -7,7 +7,7 @@ import {
 } from 'react-testing-library'
 import { ApolloProvider } from 'react-apollo'
 
-import App from './App'
+import App from '../App'
 
 const typeDefs = `
   type Query {
