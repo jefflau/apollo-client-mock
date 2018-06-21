@@ -1,6 +1,6 @@
 import { IntrospectionFragmentMatcher } from 'apollo-cache-inmemory'
 
-test('try', () => {
+test('ensure defaultMockResolvers, overwriteMocks, makeExecutableSchemaOptions, and inMemoryCacheOptions are being passed into their appropriate places.', () => {
   const mockMakeExecutableSchema = jest.fn()
   const mockAddMockFunctionsToSchema = jest.fn()
   const mockInMemoryCache = jest.fn(() => ({
@@ -45,7 +45,7 @@ test('try', () => {
         hello: () => 'Hello World'
       },
       UnionType: {
-        __resolveType: (obj) => {
+        __resolveType: obj => {
           if (obj.typeOneField) {
             return 'UnionTypeOne'
           }
@@ -65,7 +65,7 @@ test('try', () => {
       requireResolversForNonScalar: false,
       requireResolversForAllFields: false,
       requireResolversForResolveType: true,
-      allowResolversNotInSchema:false
+      allowResolversNotInSchema: false
     },
     schemaDirectives: {},
     parseOptions: {},
@@ -110,10 +110,24 @@ test('try', () => {
     inMemoryCacheOptions
   })
 
-  createClient()
+  const overwriteMocks = {
+    Query: {
+      hello: () => 'Hello Jupiter'
+    },
+    UnionType: {
+      __resolveType: () => 'UnionTypeOne'
+    }
+  }
+
+  createClient(overwriteMocks)
 
   expect(mockMakeExecutableSchema).toHaveBeenCalledWith(
     makeExecutableSchemaOptions
+  )
+  expect(mockAddMockFunctionsToSchema).toHaveBeenCalledWith(
+    expect.objectContaining({
+      mocks: { ...defaultMockResolvers, ...overwriteMocks }
+    })
   )
   expect(mockInMemoryCache).toHaveBeenCalledWith(inMemoryCacheOptions)
 })

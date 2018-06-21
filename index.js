@@ -3,7 +3,7 @@ const { InMemoryCache } = require('apollo-cache-inmemory')
 const { SchemaLink } = require('apollo-link-schema')
 const {
   makeExecutableSchema,
-  addMockFunctionsToSchema,
+  addMockFunctionsToSchema
 } = require('graphql-tools')
 const merge = require('lodash/merge')
 
@@ -11,8 +11,6 @@ function setupClient({ defaultMockResolvers = {}, makeExecutableSchemaOptions, i
   return function createClient(overwriteMocks = {}) {
 
     const mergedMocks = merge({ ...defaultMockResolvers }, overwriteMocks)
-
-
 
     const schema = makeExecutableSchema(makeExecutableSchemaOptions)
 
