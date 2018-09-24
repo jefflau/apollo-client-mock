@@ -14,7 +14,7 @@ To setup Apollo mock client you need to import your schema in as well as your mo
 
 ```js
 import typeDefs from '../link/to/schema'
-import setupClient from 'apollo-mock-client'
+import setupClient from 'apollo-client-mock'
 
 const defaultMocks = {
   Query: () => ({
